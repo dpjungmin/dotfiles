@@ -1,0 +1,55 @@
+env:
+  EDITOR: {{ .editor }}
+
+window:
+  position:
+    x: 0
+    y: 0
+  padding:
+    x: 2
+    y: 2
+  dynamic_padding: false
+  decorations: none
+  opacity: 0.75
+  startup_mode: Maximized
+  title: {{ .alacritty.window.title }}
+  dynamic_title: true
+
+scrolling:
+  history: 100000
+  multiplier: 3
+
+font:
+  normal:
+    family: Lekton NF
+    style: Regular
+  bold:
+    family: Lekton NF
+    style: Bold
+  italic:
+    family: Lekton NF
+    style: Italic
+  bold_italic:
+    family: Lekton NF
+    style: Bold Italic
+  size: 22.0
+  offset:
+    x: 1
+    y: 0
+  use_thin_strokes: true
+  builtin_box_drawing: true
+
+draw_bold_text_with_bright_colors: false
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: true
+
+live_config_reload: true
+
+shell:
+  program: {{ .shell }}
+  args:
+    - --login
+
+alt_send_esc: true

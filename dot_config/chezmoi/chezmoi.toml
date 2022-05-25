@@ -1,0 +1,12 @@
+[data]
+  shell = "/opt/brew/bin/fish"
+  editor = "nvim"
+  alacritty = {
+    window = {
+      title = "dpjungmin"
+    }
+  }
+  gitconfig = {
+    name = "David Park",
+    email = "dpjungmin@gmail.com"
+  }

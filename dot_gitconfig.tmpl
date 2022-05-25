@@ -1,6 +1,6 @@
 [user]
-    name = David Park
-    email = dpjungmin@gmail.com
+    name = {{ .gitconfig.name }}
+    email = {{ .gitconfig.email }}
 
 [alias]
     s = status
@@ -18,7 +18,7 @@
     ff = only
 
 [core]
-    editor = nvim
+    editor = {{ .editor }}
 
 [color]
     ui = auto
