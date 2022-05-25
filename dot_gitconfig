@@ -1,0 +1,24 @@
+[user]
+    name = David Park
+    email = dpjungmin@gmail.com
+
+[alias]
+    s = status
+    st = status
+    l = log --oneline --graph
+    r = rebase
+
+[init]
+    defaultBranch = main
+
+[fetch]
+    prune = true
+
+[pull]
+    ff = only
+
+[core]
+    editor = nvim
+
+[color]
+    ui = auto
