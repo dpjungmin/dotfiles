@@ -1,0 +1,54 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/zsh
+
+FORMULAS=(
+    alacritty
+    fish
+    starship
+    tmux
+    neovim
+    exa
+    bat
+    ripgrep
+    fd
+    zoxide
+    fzf
+    node
+)
+
+CASKS=(
+    font-lekton-nerd-font
+)
+
+# If Homebrew is not installed on the system, it will be installed here
+if test ! $(which brew); then
+    printf '\n\n\e[33mHomebrew not found. \e[0mInstalling Homebrew...'
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    printf '\n\n\e[0mHomebrew found. Continuing...'
+fi
+
+printf '\nInitiating Homebrew update...\n'
+brew update
+
+printf '\nInstalling formulas...\n'
+brew install ${FORMULAS[@]}
+
+printf '\n\nRemoving out of date packages...\n'
+brew cleanup
+
+brew tap homebrew/cask-fonts
+
+printf '\n\nInstalling cask...\n'
+brew install cask
+
+printf '\n\nInstalling cask apps...\n'
+brew install --cask ${CASKS[@]}
+
+# Install Rust toolchain
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+printf '\n\nUpdating npm...\n'
+npm install -g npm
+
+{{ end -}}
