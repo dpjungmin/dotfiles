@@ -1,0 +1,20 @@
+set -g history-limit 100000
+set -g mouse on
+
+set -g default-terminal "xterm-256color"
+set -g default-shell "{{ .shell }}"
+
+set -g status-style fg=default,bg=default
+
+# Avoid date/time taking up space
+set -g status-right ''
+set -g status-right-length 0
+
+# Move between panes with vi keys
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# sane scrolling
+bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e; send-keys -M'"
