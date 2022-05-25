@@ -1,5 +1,6 @@
 [data]
   shell = "/opt/brew/bin/fish"
+  fish = "/opt/brew/bin/fish"
   editor = "nvim"
   alacritty = {
     window = {

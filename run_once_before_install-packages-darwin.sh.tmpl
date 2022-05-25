@@ -20,6 +20,11 @@ CASKS=(
     font-lekton-nerd-font
 )
 
+FISH_PLUGINS=(
+    jorgebucaran/fisher
+    jethrokuan/z
+)
+
 # If Homebrew is not installed on the system, it will be installed here
 if test ! $(which brew); then
     printf '\n\n\e[33mHomebrew not found. \e[0mInstalling Homebrew...'
@@ -44,6 +49,16 @@ brew install cask
 
 printf '\n\nInstalling cask apps...\n'
 brew install --cask ${CASKS[@]}
+
+{{ .fish }} <<EOF
+
+printf '\n\nInstalling Fisher...\n'
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+
+printf '\nInstalling fish shell plugins...\n'
+fisher install ${FISH_PLUGINS[@]}
+
+EOF
 
 # Install Rust toolchain
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
