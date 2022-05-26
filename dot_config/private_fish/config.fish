@@ -17,6 +17,8 @@ set -x PATH $PATH ~/.local/bin
 set -x PATH $PATH ~/.cargo/bin
 set -x PATH $PATH ~/.emacs.d/bin
 
+set -Ux RUST_BACKTRACE 1
+
 switch (uname)
     case Linux
     case Darwin
