@@ -1,5 +1,5 @@
 {{- if eq .chezmoi.os "darwin" -}}
-#!/bin/zsh
+#!/bin/bash -x
 
 PACKAGES=(
     alacritty
@@ -60,15 +60,19 @@ brew install cask
 printf '\nInstalling cask apps...\n'
 brew install --cask ${CASKS[@]}
 
-{{ .fish }} << EOF
+SHELL={{ .shell | quote }}
 
-printf '\nInstalling Fisher...\n'
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+if [[ $SHELL == */fish ]]; then
+    $SHELL << EOF
 
-printf '\nInstalling fish shell plugins...\n'
-fisher install ${FISH_PLUGINS[@]}
+    printf '\nInstalling Fisher...\n'
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+
+    printf '\nInstalling fish shell plugins...\n'
+    fisher install ${FISH_PLUGINS[@]}
 
 EOF
+fi
 
 printf '\nInstalling Neovim dependencies...\n'
 pip3 install -U pynvim
