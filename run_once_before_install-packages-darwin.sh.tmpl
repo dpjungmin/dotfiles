@@ -1,7 +1,7 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/bin/zsh
 
-FORMULAS=(
+PACKAGES=(
     alacritty
     fish
     starship
@@ -15,9 +15,13 @@ FORMULAS=(
     fzf
     node
     hyperfine
+    lazygit
     chezmoi
     cmake
     cmake-docs
+    clang-format
+    python3
+    black
 )
 
 CASKS=(
@@ -31,7 +35,7 @@ FISH_PLUGINS=(
     jethrokuan/z
 )
 
-# If Homebrew is not installed on the system, it will be installed here
+# Install Homebrew if it is not installed on the system
 if test ! $(which brew); then
     printf '\n\n\e[33mHomebrew not found. \e[0mInstalling Homebrew...'
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -42,23 +46,23 @@ fi
 printf '\nInitiating Homebrew update...\n'
 brew update
 
-printf '\nInstalling formulas...\n'
-brew install ${FORMULAS[@]}
+printf '\nInstalling packages...\n'
+brew install ${PACKAGES[@]}
 
-printf '\n\nRemoving out of date packages...\n'
+printf '\nRemoving out of date packages...\n'
 brew cleanup
 
 brew tap homebrew/cask-fonts
 
-printf '\n\nInstalling cask...\n'
+printf '\nInstalling cask...\n'
 brew install cask
 
-printf '\n\nInstalling cask apps...\n'
+printf '\nInstalling cask apps...\n'
 brew install --cask ${CASKS[@]}
 
-{{ .fish }} <<EOF
+{{ .fish }} << EOF
 
-printf '\n\nInstalling Fisher...\n'
+printf '\nInstalling Fisher...\n'
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
 
 printf '\nInstalling fish shell plugins...\n'
@@ -66,10 +70,16 @@ fisher install ${FISH_PLUGINS[@]}
 
 EOF
 
-# Install Rust toolchain
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+printf '\nInstalling Neovim dependencies...\n'
+pip3 install -U pynvim
 
-printf '\n\nUpdating npm...\n'
+# Install rustup if it is not installed on the system
+if test ! $(which rustup); then
+    printf '\n\n\e[33mrustup not found. \e[0mInstalling rustup...'
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
+printf '\nUpdating npm...\n'
 npm install -g npm
 
 printf '\n\nDone!\n'
