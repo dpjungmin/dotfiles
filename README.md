@@ -1,5 +1,5 @@
 <h1 align="center">
-    My configuration files<br/><sup><sub>powered by  <a href="https://www.chezmoi.io/">chezmoi</a>
+    My dotfiles<br/><sup><sub>powered by  <a href="https://www.chezmoi.io/">chezmoi</a>
 </h1>
 
 ## Pre-installation
@@ -9,19 +9,23 @@ the following variables.
 
 ```toml
 [data]
-  editor = "nvim"
+  editor = "nvim" # This will be the $EDITOR envar
   gitconfig.name = "David Park"
   gitconfig.email = "dpjungmin@gmail.com"
-  shell = "/opt/brew/bin/fish"
+  shell = "/opt/brew/bin/fish" # The path to your shell
 ```
 
 ## Installation
 
-`sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply dpjungmin`
+```shell
+sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply dpjungmin
+```
 
 ## Pull the latest changes
 
-`chezmoi update`
+```shell
+chezmoi update
+```
 
 ## TODO
 
@@ -29,8 +33,9 @@ the following variables.
 
 ---
 
-This is WIP.
-
-This currently works for macOS only.
+I use [chezmoi](https://www.chezmoi.io/) to manage my personal configuration
+files accross multiple machines.
 
 I use [alacritty](https://alacritty.org/) as my terminal emulator and [fish](https://fishshell.com/) for my shell.
+
+This currently works for macOS only.
