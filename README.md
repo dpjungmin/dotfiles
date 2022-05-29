@@ -9,7 +9,7 @@ the following variables.
 
 ```toml
 [data]
-  editor = "nvim" # This will be the $EDITOR envar
+  editor = "nvim" # This will be the $EDITOR envvar
   gitconfig.name = "David Park"
   gitconfig.email = "dpjungmin@gmail.com"
   shell = "/opt/brew/bin/fish" # The path to your shell
