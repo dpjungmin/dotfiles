@@ -9,7 +9,7 @@ the following variables.
 
 ```toml
 [data]
-  alacritty.font = "Lekton NF" # Your favorite nerd font
+  alacritty.font = "Lekton NF" # Your favorite nerd font installed on your machine
   editor = "nvim" # This will be the $EDITOR envvar
   gitconfig.name = "David Park"
   gitconfig.email = "dpjungmin@gmail.com"
