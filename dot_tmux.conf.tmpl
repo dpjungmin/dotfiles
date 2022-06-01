@@ -18,3 +18,21 @@ bind l select-pane -R
 
 # Sane scrolling
 bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e; send-keys -M'"
+
+# Theme
+set -g @plugin 'o0th/tmux-nova' # https://github.com/o0th/tmux-nova
+set -g @nova-rows 0
+set -g @nova-nerdfonts false
+set -g @nova-pane "#W"
+set -g @nova-pane-justify "left"
+
+set -g @nova-segment-mode "#{?client_prefix,Ω,ω}"
+set -g @nova-segment-mode-colors "#50fa7b #282a36"
+set -g @nova-segments-0-left "mode"
+
+set -g @nova-segment-whoami "#(whoami)@#h"
+set -g @nova-segment-whoami-colors "#50fa7b #282a36"
+set -g @nova-segments-0-right "whoami"
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

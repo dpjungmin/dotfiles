@@ -2,16 +2,19 @@ env:
   EDITOR: {{ .editor }}
 
 window:
+  dimensions:
+    columns: 100
+    lines: 85
   position:
     x: 0
     y: 0
   padding:
     x: 2
     y: 2
-  dynamic_padding: false
+  dynamic_padding: true
   decorations: none
-  opacity: 0.75
-  startup_mode: Maximized
+  opacity: 1
+  startup_mode: Windowed
   title: Alacritty
   dynamic_title: true
 
@@ -35,9 +38,38 @@ font:
   size: 22.0
   offset:
     x: 1
-    y: 0
+    y: 1
   use_thin_strokes: true
   builtin_box_drawing: true
+
+# monokai pro (https://gist.github.com/AlphaTechnolog/d1d5f6557f77f71519cb5713268da7dd)
+colors:
+  # Default colors
+  primary:
+    background: '0x2D2A2E'
+    foreground: '0xfff1f3'
+
+  # Normal colors
+  normal:
+    black:   '0x2c2525'
+    red:     '0xfd6883'
+    green:   '0xadda78'
+    yellow:  '0xf9cc6c'
+    blue:    '0xf38d70'
+    magenta: '0xa8a9eb'
+    cyan:    '0x85dacc'
+    white:   '0xfff1f3'
+
+  # Bright colors
+  bright:
+    black:   '0x72696a'
+    red:     '0xfd6883'
+    green:   '0xadda78'
+    yellow:  '0xf9cc6c'
+    blue:    '0xf38d70'
+    magenta: '0xa8a9eb'
+    cyan:    '0x85dacc'
+    white:   '0xfff1f3'
 
 draw_bold_text_with_bright_colors: false
 
