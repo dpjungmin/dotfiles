@@ -9,6 +9,7 @@ alias lla="exa -alF"
 alias tree="exa --tree"
 alias cat=bat
 alias vim=nvim
+alias vs="nvim -S"
 alias c=cargo
 alias cz=chezmoi
 
