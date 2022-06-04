@@ -19,6 +19,8 @@ bind l select-pane -R
 # Sane scrolling
 bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e; send-keys -M'"
 
+set -sg escape-time 10
+
 # Theme
 set -g @plugin 'o0th/tmux-nova' # https://github.com/o0th/tmux-nova
 set -g @nova-rows 0
