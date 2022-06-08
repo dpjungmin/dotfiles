@@ -35,7 +35,15 @@ font:
   bold_italic:
     family: {{ .alacritty.font }}
     style: Bold Italic
+
+{{ if eq .chezmoi.os "darwin" }}
   size: 22.0
+{{ else if eq .chezmoi.os "linux" }}
+  size: 12.0
+{{ else }}
+  size: 20.0
+{{ end }}
+
   offset:
     x: 1
     y: 1
