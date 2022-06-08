@@ -9,11 +9,15 @@ the following variables.
 
 ```toml
 [data]
-  alacritty.font = "Lekton NF" # Your favorite nerd font installed on your machine
-  editor = "nvim" # This will be the $EDITOR envvar
+  alacritty.font = "Lekton NF" # Your favorite nerd-font installed on your machine
+  editor = "nvim" # The $EDITOR envvar will be set to this value
+
+  # Global git configurations
   gitconfig.name = "David Park"
   gitconfig.email = "dpjungmin@gmail.com"
-  shell = "/opt/brew/bin/fish" # The path to your shell
+
+  # The path to your favorite shell (fish shell is recommended for the current settings)
+  shell = "/usr/bin/fish"
 ```
 
 ## Installation
@@ -28,10 +32,6 @@ sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply dpjungmin
 chezmoi update
 ```
 
-## TODO
-
-- Add Linux support
-
 ---
 
 I use [chezmoi](https://www.chezmoi.io/) to manage my personal configuration
@@ -39,4 +39,4 @@ files accross multiple machines.
 
 I use [alacritty](https://alacritty.org/) as my terminal emulator and [fish](https://fishshell.com/) for my shell.
 
-This currently works for macOS only.
+This currently works for **macOS** and **Arch Linux**.
