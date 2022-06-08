@@ -1,0 +1,66 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/bash -x
+
+PACKAGES=(
+    alacritty
+    fish
+    starship
+    tmux
+    neovim
+    exa
+    bat
+    ripgrep
+    fd
+    zoxide
+    fzf
+    btop
+    nodejs
+    npm
+    hyperfine
+    lazygit
+    chezmoi
+    cmake
+    python3
+    python-black
+)
+
+FISH_PLUGINS=(
+    jorgebucaran/fisher
+    jethrokuan/z
+)
+
+printf '\nSyncing updates...\n'
+sudo pacman -Syu
+
+printf '\nInstalling packages...\n'
+sudo pacman -S ${PACKAGES[@]}
+
+SHELL={{ .shell | quote }}
+
+if [[ $SHELL == */fish ]]; then
+    $SHELL << EOF
+
+    printf '\nInstalling Fisher...\n'
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+
+    printf '\nInstalling fish shell plugins...\n'
+    fisher install ${FISH_PLUGINS[@]}
+
+EOF
+fi
+
+printf '\nInstalling Tmux Plugin Manager...\n'
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+printf '\nInstalling Neovim dependencies...\n'
+pip3 install -U pynvim
+
+# Install rustup if it is not installed on the system
+if test ! $(which rustup); then
+    printf '\n\n\e[33mrustup not found. \e[0mInstalling rustup...'
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
+printf '\n\nDone!\n'
+
+{{ end -}}
