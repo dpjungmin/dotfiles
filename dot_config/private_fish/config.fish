@@ -17,7 +17,7 @@ set -x PATH $PATH /usr/local/bin
 set -x PATH $PATH ~/.local/bin
 set -x PATH $PATH ~/.emacs.d/bin
 set -x PATH $PATH ~/.cargo/bin
-set -X PATH $PATH ~/go/bin
+set -x PATH $PATH ~/go/bin
 
 set -Ux RUST_BACKTRACE 1
 
