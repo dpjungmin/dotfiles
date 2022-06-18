@@ -23,6 +23,7 @@ set -Ux RUST_BACKTRACE 1
 
 switch (uname)
     case Linux
+        alias yank="xclip -selection clipboard"
     case Darwin
         set -x PATH $PATH /opt/brew/bin
     case '*'
