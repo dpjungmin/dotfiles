@@ -3,9 +3,12 @@
     email = {{ .gitconfig.email }}
 
 [alias]
+    c = commit
     s = status
     st = status
-    l = log --oneline --graph
+    lg = log --oneline
+    last = log -1 HEAD
+    f = push --force-with-lease
     r = rebase
 
 [init]
