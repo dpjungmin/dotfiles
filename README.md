@@ -9,7 +9,9 @@ the following variables.
 
 ```toml
 [data]
-  alacritty.font = "NotoSansMono Nerd Font" # Your favorite nerd-font installed on your machine
+  alacritty.font.family = "NotoSansMono Nerd Font" # Your favorite nerd-font installed on your machine
+  alacritty.font.size = "25"
+
   editor = "nvim" # The $EDITOR envvar will be set to this value
 
   # Global git configurations

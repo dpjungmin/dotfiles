@@ -24,26 +24,18 @@ scrolling:
 
 font:
   normal:
-    family: {{ .alacritty.font }}
+    family: {{ .alacritty.font.family }}
     style: Regular
   bold:
-    family: {{ .alacritty.font }}
+    family: {{ .alacritty.font.family }}
     style: Bold
   italic:
-    family: {{ .alacritty.font }}
+    family: {{ .alacritty.font.family }}
     style: Italic
   bold_italic:
-    family: {{ .alacritty.font }}
+    family: {{ .alacritty.font.family }}
     style: Bold Italic
-
-{{ if eq .chezmoi.os "darwin" }}
-  size: 27.0
-{{ else if eq .chezmoi.os "linux" }}
-  size: 12.0
-{{ else }}
-  size: 25.0
-{{ end }}
-
+  size: {{ .alacritty.font.size }}
   offset:
     x: 1
     y: 1
