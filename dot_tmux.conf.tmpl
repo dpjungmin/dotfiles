@@ -1,14 +1,12 @@
-set -g history-limit 100000
-set -g mouse on
-
-set -g default-terminal "xterm-256color"
 set -g default-shell "{{ .shell }}"
-
-set -g status-style fg=default,bg=default
-
-# Avoid date/time taking up space
-set -g status-right ''
-set -g status-right-length 0
+set -g history-limit 100000 # scroll history
+set -g mode-keys vi # vim mode
+set -g mouse on # mouse friendly
+set -sg escape-time 0 # Avoid ESC delay
+set -g default-terminal "xterm-256color"
+set -ga terminal-overrides ",alacritty:Tc"
+set -g set-titles on
+set -g set-titles-string "#T"
 
 # Move between panes with vi keys
 bind h select-pane -L
@@ -19,14 +17,15 @@ bind l select-pane -R
 # Sane scrolling
 bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e; send-keys -M'"
 
-set -sg escape-time 10
+##### Theme #####
 
-# Theme
-set -g @plugin 'dracula/tmux' # https://draculatheme.com/tmux
-set -g @dracula-plugins "cpu-usage time"
-set -g @dracula-show-powerline false
-set -g @dracula-show-left-icon session
-set -g @dracula-left-icon-padding 1
+# Avoid date/time taking up space
+set -g status-right ''
+set -g status-right-length 0
+
+# https://github.com/mattdavis90/base16-tmux
+set -g @plugin 'mattdavis90/base16-tmux'
+set -g @colors-base16 'gruvbox-dark-hard'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
