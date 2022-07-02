@@ -27,5 +27,9 @@ set -g status-right-length 0
 set -g @plugin 'mattdavis90/base16-tmux'
 set -g @colors-base16 'gruvbox-dark-hard'
 
+# https://github.com/tmux-plugins/tmux-cpu
+set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g status-right '#{cpu_percentage} '
+
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
