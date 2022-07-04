@@ -9,7 +9,7 @@ the following variables.
 
 ```toml
 [data]
-  alacritty.font.family = "NotoSansMono Nerd Font" # Your favorite nerd-font installed on your machine
+  alacritty.font.family = "Lekton Nerd Font" # Your favorite nerd-font installed on your machine
   alacritty.font.size = "25"
 
   editor = "nvim" # The $EDITOR envvar will be set to this value
@@ -17,6 +17,8 @@ the following variables.
   # Global git configurations
   gitconfig.name = "David Park"
   gitconfig.email = "dpjungmin@gmail.com"
+
+  prompt = "fish" # fish | starship
 
   # The path to your favorite shell (fish shell is recommended for the current settings)
   shell = "/usr/bin/fish"
