@@ -4,24 +4,27 @@
 
 ## Pre-installation
 
+You must have [fish](https://fishshell.com/) and a [nerd-font](https://www.nerdfonts.com/) installed on your machine.
+
 Create a configuration file called `~/.config/chezmoi/chezmoi.toml` and define
 the following variables.
 
 ```toml
 [data]
-  alacritty.font.family = "Lekton Nerd Font" # Your favorite nerd-font installed on your machine
-  alacritty.font.size = "25"
+  # Alacritty font settings
+  alacritty.font.family = "Lekton Nerd Font" # nerd-font installed on your machine
+  alacritty.font.size = "24"
 
-  editor = "nvim" # The $EDITOR envvar will be set to this value
+  # The $EDITOR envvar will be set to this value
+  editor = "nvim"
 
   # Global git configurations
   gitconfig.name = "David Park"
   gitconfig.email = "dpjungmin@gmail.com"
 
+  # Shell information
   prompt = "fish" # fish | starship
-
-  # The path to your favorite shell (fish shell is recommended for the current settings)
-  shell = "/usr/bin/fish"
+  shell = "/usr/bin/fish" # path to fish shell
 ```
 
 ## Installation

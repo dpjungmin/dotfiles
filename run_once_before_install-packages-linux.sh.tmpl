@@ -43,7 +43,7 @@ sudo pacman -Syu
 printf '\nInstalling packages...\n'
 sudo pacman -S ${PACKAGES[@]}
 
-SHELL={{ .shell | quote }}
+SHELL=$(which fish)
 
 if [[ $SHELL == */fish ]]; then
     $SHELL << EOF

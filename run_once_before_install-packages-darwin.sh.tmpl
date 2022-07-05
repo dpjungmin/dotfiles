@@ -65,7 +65,7 @@ brew install cask
 printf '\nInstalling cask apps...\n'
 brew install --cask ${CASKS[@]}
 
-SHELL={{ .shell | quote }}
+SHELL=$(which fish)
 
 if [[ $SHELL == */fish ]]; then
     $SHELL << EOF
