@@ -9,10 +9,13 @@
     l = log --oneline
     lg = log --oneline --graph
     last = log -1 HEAD
-    f = push --force-with-lease
+    pf = push --force-with-lease
     r = rebase
+    ri = rebase -i
+    rc = rebase --continue
     root = rev-parse --show-toplevel
     path = rev-parse --show-prefix
+    dfn = diff --diff-filter=d --name-only HEAD~1 HEAD
 
 [init]
     defaultBranch = main
@@ -40,7 +43,7 @@
     colorMoved = default
 
 [delta]
-    features = side-by-side lin-numbers decorations
+    features = side-by-side line-numbers decorations
     syntax-theme = Dracula
     plus-style = syntax "#003800"
     minus-style = syntax "#3f0001"

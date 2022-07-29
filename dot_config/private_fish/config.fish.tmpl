@@ -2,6 +2,7 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+alias ..="cd .."
 alias ls="exa -F"
 alias la="exa -aF"
 alias ll="exa -lF"
@@ -16,6 +17,7 @@ alias czd="chezmoi cd"
 alias cza="chezmoi -v apply"
 alias cze="chezmoi edit"
 alias czu="chezmoi update"
+alias gc="git checkout"
 
 set -x PATH $PATH /usr/local/bin
 set -x PATH $PATH ~/.local/bin
