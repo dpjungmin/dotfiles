@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.os "darwin" -}}
+{{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash -x
 
 PACKAGES=(
@@ -44,59 +44,56 @@ FISH_PLUGINS=(
 )
 
 # Install Homebrew if it is not installed on the system
-if test ! $(which brew); then
+if [[ -z "$(which brew)" ]]; then
     printf '\n\n\e[33mHomebrew not found. \e[0mInstalling Homebrew...'
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-else
-    printf '\n\n\e[0mHomebrew found. Continuing...'
 fi
 
-printf '\nInitiating Homebrew update...\n'
+printf '\Initiating Homebrew...\n'
 brew update
-
-printf '\nInstalling packages...\n'
 brew install ${PACKAGES[@]}
-
-printf '\nRemoving out of date packages...\n'
 brew cleanup
-
 brew tap homebrew/cask-fonts
-
-printf '\nInstalling cask...\n'
 brew install cask
-
-printf '\nInstalling cask apps...\n'
 brew install --cask ${CASKS[@]}
 
-SHELL=$(which fish)
+SHELL="$(which fish)"
 
-if [[ $SHELL == */fish ]]; then
+if [[ "$SHELL" == "*/fish" ]]; then
     $SHELL << EOF
 
     printf '\nInstalling Fisher...\n'
     curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
 
-    printf '\nInstalling fish shell plugins...\n'
+    printf '\nInstalling fish-shell plugins...\n'
     fisher install ${FISH_PLUGINS[@]}
 
 EOF
 fi
 
-printf '\nInstalling Tmux Plugin Manager...\n'
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+printf '\nInstalling other dependencies...\n'
 
-printf '\nInstalling Neovim dependencies...\n'
-pip3 install -U pynvim
+pip3 install -U pynvim # Install Neovim dependency
+
+if [[ ! -d "~/.tmux/plugins/tpm" ]]; then
+    printf '\nInstalling Tmux Plugin Manager...\n'
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 # Install rustup if it is not installed on the system
-if test ! $(which rustup); then
+if [[ -z "$(which rustup)" ]]; then
     printf '\n\n\e[33mrustup not found. \e[0mInstalling rustup...'
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
-printf '\nUpdating npm...\n'
-npm install -g npm
+if [[ -z "$(which stylua)" ]]; then
+    cargo install stylua
+fi
 
-printf '\n\nDone!\n'
+if [[ -z "$(which npm)" ]]; then
+    npm install -g npm
+fi
+
+printf '\n\nDone!!\n'
 
 {{ end -}}

@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.os "linux" -}}
+{{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash -x
 
 PACKAGES=(
@@ -40,15 +40,12 @@ FISH_PLUGINS=(
     jethrokuan/z
 )
 
-printf '\nSyncing updates...\n'
-sudo pacman -Syu
-
-printf '\nInstalling packages...\n'
+sudo pacman -Syu # Syncing updates
 sudo pacman -S ${PACKAGES[@]}
 
-SHELL=$(which fish)
+SHELL="$(which fish)"
 
-if [[ $SHELL == */fish ]]; then
+if [[ "$SHELL" == "*/fish" ]]; then
     $SHELL << EOF
 
     printf '\nInstalling Fisher...\n'
@@ -60,18 +57,27 @@ if [[ $SHELL == */fish ]]; then
 EOF
 fi
 
-printf '\nInstalling Tmux Plugin Manager...\n'
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+printf '\nInstalling other dependencies...\n'
 
-printf '\nInstalling Neovim dependencies...\n'
-pip3 install -U pynvim
+pip3 install -U pynvim # Install Neovim dependency
+
+if [[ ! -d "~/.tmux/plugins/tpm" ]]; then
+    printf '\nInstalling Tmux Plugin Manager...\n'
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 # Install rustup if it is not installed on the system
-if test ! $(which rustup); then
+if [[ -z "$(which rustup)" ]]; then
     printf '\n\n\e[33mrustup not found. \e[0mInstalling rustup...'
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
-printf '\n\nDone!\n'
+if [[ -z "$(which stylua)" ]]; then
+    cargo install stylua
+fi
+
+if [[ -z "$(which npm)" ]]; then
+    npm install -g npm
+fi
 
 {{ end -}}
