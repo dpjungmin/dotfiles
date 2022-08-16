@@ -22,9 +22,8 @@ the following variables.
   gitconfig.name = "David Park"
   gitconfig.email = "dpjungmin@gmail.com"
 
-  # Shell information
-  prompt = "fish" # fish | starship
-  shell = "/usr/bin/fish" # path to fish shell
+  # Path to fish shell
+  shell = "/usr/local/bin/fish"
 ```
 
 ## Installation

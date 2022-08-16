@@ -2,6 +2,7 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+# Set aliases
 alias ..="cd .. && pwd"
 alias ls="exa -F"
 alias la="exa -aF"
@@ -10,24 +11,28 @@ alias lla="exa -alF"
 alias tree="exa --tree --git-ignore"
 alias cat="bat -p"
 alias vim=nvim
-alias vs="nvim -S"
 alias c=cargo
 alias cz=chezmoi
 alias czd="chezmoi cd"
-alias cza="chezmoi -v apply"
+alias cza="chezmoi --verbose apply"
 alias cze="chezmoi edit"
 alias czu="chezmoi update"
-alias czr="chezmoi -v apply --refresh-externals"
+alias czr="chezmoi --verbose apply --refresh-externals"
+alias czc="chezmoi state delete-bucket --bucket=scriptState"
 alias gc="git checkout"
 
+# Set paths
 set -x PATH $PATH /usr/local/bin
 set -x PATH $PATH ~/.local/bin
 set -x PATH $PATH ~/.emacs.d/bin
 set -x PATH $PATH ~/.cargo/bin
 set -x PATH $PATH ~/go/bin
 
+# Set environment variables
+set -Ux EDITOR {{ .editor }}
 set -Ux RUST_BACKTRACE 1
 
+# Set machine specific configurations
 switch (uname)
     case Linux
         alias yank="xclip -selection clipboard"
@@ -35,6 +40,9 @@ switch (uname)
         set -x PATH $PATH /opt/brew/bin
     case '*'
 end
+
+# Set custom key bindings
+bind \cd 'exit' # Exit the shell when Control+D is pressed
 
 # This will run the mkdir command, and if it is successful, change the current
 # working directory to the one just created.
@@ -49,31 +57,6 @@ function mkcd -d "Create a directory and set CWD"
                 return
         end
     end
-end
-
-# Fish git prompt
-set __fish_git_prompt_showuntrackedfiles 'yes'
-set __fish_git_prompt_showdirtystate 'yes'
-set __fish_git_prompt_showstashstate ''
-set __fish_git_prompt_showupstream 'none'
-set -g fish_prompt_pwd_dir_length 3
-
-function fish_prompt
-    set_color brblack
-    echo -n "["(date "+%H:%M")"] "
-    set_color blue
-    echo -n (hostname)
-    if [ $PWD != $HOME ]
-        set_color brblack
-        echo -n ':'
-        set_color yellow
-        echo -n (basename $PWD)
-    end
-    set_color green
-    printf '%s ' (__fish_git_prompt)
-    set_color red
-    echo -n '| '
-    set_color normal
 end
 
 function fish_greeting
@@ -106,7 +89,4 @@ function fish_greeting
 end
 
 zoxide init fish | source
-
-{{- if eq .prompt "starship" -}}
 starship init fish | source
-{{ end -}}

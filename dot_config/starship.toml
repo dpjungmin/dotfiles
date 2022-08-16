@@ -1,12 +1,112 @@
-format = "$all"
+# Colors: black, red, green, blue, yellow, purple, cyan, white
+# (optionally prefix these with bright-), or RGB value (hex)
 
-[[battery.display]]
-threshold = 30
+format = """
+$hostname[:](bright-black)$directory\
+$git_branch$git_commit$git_state$git_status\
+$fill $character $time
+[└─>](blue) """
 
 [character]
-success_symbol = "[➜](bold green) "
-error_symbol = "[✗](bold red) "
+format = "$symbol"
+success_symbol = "[ok](green)"
+error_symbol = "[err](red)"
+disabled = false
 
 [directory]
 truncation_length = 3
-truncation_symbol = "…/"
+truncate_to_repo = true
+format = "[$path]($style)[$read_only]($read_only_style)"
+style = "bold yellow"
+disabled = false
+read_only = "🔒"
+read_only_style = "red"
+truncation_symbol = ""
+repo_root_style = "italic yellow"
+repo_root_format = "[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)"
+home_symbol = "~"
+use_os_path_sep = true
+
+[fill]
+symbol = " "
+style = "bold black"
+disabled = false
+
+[git_branch]
+always_show_remote = false
+format = " [-](bright-black) [$symbol$branch(:$remote_branch)]($style)"
+symbol = " "
+style = "green"
+only_attached = false
+ignore_branches = []
+disabled = false
+
+[git_commit]
+commit_hash_length = 7
+format = " [\\($hash\\)]($style)"
+style = "green"
+only_detached = true
+tag_disabled = true
+tag_symbol = ""
+disabled = false
+
+[git_state]
+rebase = "REBASING"
+merge = "MERGING"
+revert = "REVERTING"
+cherry_pick = "CHERRY-PICKING"
+bisect = "BISECTING"
+am = "AM"
+am_or_rebase = "AM/REBASE"
+style = "bold green"
+format = " [\\(](bright-black)[$state($progress_current/$progress_total)]($style)[\\)](bright-black)"
+disabled = false
+
+[git_status]
+format = '( [\[$all_status$ahead_behind\]]($style))'
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+up_to_date = ""
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+style = "bold red"
+ignore_submodules = false
+disabled = false
+
+[hostname]
+ssh_only = false
+trim_at = "."
+format = "[$hostname]($style)"
+style = "blue"
+disabled = false
+
+[localip]
+ssh_only = false
+format = "[$localipv4]($style)"
+style = "bold yellow"
+disabled = false
+
+[rust]
+format = " [-](bright-black) [$symbol($version )]($style)"
+version_format = "v${raw}"
+symbol = "⚙️ "
+detect_extensions = ["rs"]
+detect_files = ["Cargo.toml"]
+detect_folders = []
+style = "purple"
+disabled = false
+
+[time]
+format = "[\\[$time\\]]($style) "
+use_12hr = false
+time_format = "%H:%M"
+style = "bright-black"
+utc_time_offset = "local"
+disabled = false
+time_range = "00:00:00-23:59:59"

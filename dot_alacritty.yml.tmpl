@@ -1,6 +1,3 @@
-env:
-  EDITOR: {{ .editor }}
-
 window:
   dimensions:
     columns: 100
@@ -10,12 +7,11 @@ window:
     y: 0
   padding:
     x: 0
-    y: 2
+    y: 0
   dynamic_padding: true
   decorations: none
-  opacity: 1
+  opacity: 1.0
   startup_mode: Windowed
-  title: Alacritty
   dynamic_title: true
 
 scrolling:
@@ -25,53 +21,71 @@ scrolling:
 font:
   normal:
     family: {{ .alacritty.font.family }}
-    style: Regular
-  bold:
-    family: {{ .alacritty.font.family }}
-    style: Bold
-  italic:
-    family: {{ .alacritty.font.family }}
-    style: Italic
-  bold_italic:
-    family: {{ .alacritty.font.family }}
-    style: Bold Italic
   size: {{ .alacritty.font.size }}
   offset:
-    x: 1
-    y: 1
+    x: 2
+    y: 2
+  {{ if eq .chezmoi.os "darwin" -}}
   use_thin_strokes: true
+  {{ end -}}
   builtin_box_drawing: true
+
+draw_bold_text_with_bright_colors: true
 
 colors:
   primary:
     background: '#1d1f21'
     foreground: '#ccd6f6'
 
+  cursor:
+    text: '#ff0000'
+    cursor: '#00ff00'
+
+  vi_mode_cursor:
+    text: '#ff0000'
+    cursor: '#00ff00'
+
+  search:
+    matches:
+      foreground: '#ffffff'
+      background: '#f4468f'
+    focused_match:
+      foreground: CellBackground
+      background: '#00ff00'
+    bar:
+      foreground: '#c5c8c6'
+      background: '#1d1f21'
+
   normal:
-    black:   '#0a0b0c'
-    red:     '#cc6674'
-    green:   '#90bd62'
-    yellow:  '#d7b66f'
-    blue:    '#8badcd'
-    magenta: '#b799c8'
-    cyan:    '#89beb7'
-    white:   '#ccd6f6'
+    black:   '#1d1f21'
+    red:     '#cc6666'
+    green:   '#b5bd68'
+    yellow:  '#f0c674'
+    blue:    '#81a2be'
+    magenta: '#b294bb'
+    cyan:    '#8abeb7'
+    white:   '#c5c8c6'
 
   bright:
-    black:   '#8892b0'
-    red:     '#d95555'
-    green:   '#90bd62'
-    yellow:  '#d7b66f'
-    blue:    '#81a2bf'
-    magenta: '#b799c8'
-    cyan:    '#89beb7'
-    white:   '#ccd6f6'
-
-draw_bold_text_with_bright_colors: false
+    black:   '#666666'
+    red:     '#d54e53'
+    green:   '#b9ca4a'
+    yellow:  '#e7c547'
+    blue:    '#7aa6da'
+    magenta: '#c397d8'
+    cyan:    '#70c0b1'
+    white:   '#eaeaea'
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
   save_to_clipboard: true
+
+cursor:
+  style:
+    shape: Block
+    blinking: Off
+  unfocused_hollow: true
+  thickness: 0.4
 
 live_config_reload: true
 
@@ -81,6 +95,7 @@ shell:
     - --login
 
 alt_send_esc: true
+ipc_socket: true
 
 key_bindings:
   - { key: J,        mods: Alt,     chars: "\x1bj"                       }
