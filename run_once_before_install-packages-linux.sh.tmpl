@@ -61,6 +61,7 @@ fi
 printf '\nInstalling other dependencies...\n'
 
 pip3 install -U pynvim # Install Neovim dependency
+pip3 install --user tmuxp # A session manager for tmux
 
 if [[ ! -d "~/.tmux/plugins/tpm" ]]; then
     printf '\nInstalling Tmux Plugin Manager...\n'
