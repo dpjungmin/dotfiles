@@ -78,6 +78,10 @@ if [[ -z "$(which stylua)" ]]; then
     cargo install stylua
 fi
 
+if [[ -z "$(which git-stack)" ]]; then
+    cargo install git-stack
+fi
+
 if [[ -z "$(which npm)" ]]; then
     npm install -g npm
 fi
