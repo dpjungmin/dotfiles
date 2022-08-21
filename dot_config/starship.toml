@@ -2,10 +2,10 @@
 # (optionally prefix these with bright-), or RGB value (hex)
 
 format = """
-$hostname[:](bright-black)$directory\
+ $hostname[:](bright-black)$directory\
 $git_branch$git_commit$git_state$git_status\
 $fill $character $time
-[└─>](blue) """
+ [└─>](blue) """
 
 [character]
 format = "$symbol"
