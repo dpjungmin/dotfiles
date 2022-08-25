@@ -23,6 +23,39 @@ bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft=
 set -g status-right ''
 set -g status-right-length 0
 
+{{- if eq .theme "light" }}
+
+# default statusbar colors
+set-option -g status-style "fg=#586069,bg=default"
+
+# default window title colors
+set-window-option -g window-status-style "fg=#586069,bg=default"
+
+# active window title colors
+set-window-option -g window-status-current-style "fg=#22863a,bg=default,bold"
+
+# pane border
+set-option -g pane-border-style "fg=#cdd9e5"
+set-option -g pane-active-border-style "fg=#cdd9e5"
+
+# message text
+set-option -g message-style "fg=#539bf5,bg=default"
+
+# pane number display
+set-option -g display-panes-active-colour "#22863a"
+set-option -g display-panes-colour "#586069"
+
+# clock
+set-window-option -g clock-mode-colour "#22863a"
+
+# copy mode highligh
+set-window-option -g mode-style "fg=default,bg=#accbff"
+
+# bell
+set-window-option -g window-status-bell-style "fg=#fbfbfb,bg=#cb2431"
+
+{{- else }}
+
 # default statusbar colors
 set-option -g status-style "fg=#adbac7,bg=default"
 
@@ -52,5 +85,6 @@ set-window-option -g mode-style "fg=default,bg=#264f78"
 # bell
 set-window-option -g window-status-bell-style "fg=#fbfbfb,bg=#fb4934"
 
+{{- end }}
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'

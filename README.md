@@ -24,6 +24,9 @@ the following variables.
 
   # Path to fish shell
   shell = "/usr/local/bin/fish"
+
+  # "dark" or "light"
+  theme = "light"
 ```
 
 ## Installation
