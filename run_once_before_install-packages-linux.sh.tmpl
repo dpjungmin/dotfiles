@@ -1,7 +1,8 @@
 {{ if eq .chezmoi.os "linux" -}}
-#!/bin/bash -x
 
-PACKAGES=(
+#!/usr/bin/env bash -x
+
+readonly PACKAGES=(
     alacritty
     fish
     starship
@@ -38,9 +39,10 @@ PACKAGES=(
     ctags
     bear
     fennel
+    emacs
 )
 
-FISH_PLUGINS=(
+readonly FISH_PLUGINS=(
     jorgebucaran/fisher
     jethrokuan/z
 )
@@ -50,44 +52,29 @@ sudo pacman -S ${PACKAGES[@]}
 
 SHELL="$(which fish)"
 
+# Install fish plugins.
 if [[ "$SHELL" == "*/fish" ]]; then
     $SHELL << EOF
-
-    printf '\nInstalling Fisher...\n'
     curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
-
-    printf '\nInstalling fish shell plugins...\n'
     fisher install ${FISH_PLUGINS[@]}
-
 EOF
 fi
 
-printf '\nInstalling other dependencies...\n'
-
-pip3 install -U pynvim # Install Neovim dependency
-pip3 install --user tmuxp # A session manager for tmux
-
+# Install tmux plugin manager.
 if [[ ! -d "~/.tmux/plugins/tpm" ]]; then
     printf '\nInstalling Tmux Plugin Manager...\n'
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-# Install rustup if it is not installed on the system
+# Install rustup.
 if [[ -z "$(which rustup)" ]]; then
     printf '\n\n\e[33mrustup not found. \e[0mInstalling rustup...'
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
 
-if [[ -z "$(which stylua)" ]]; then
-    cargo install stylua
-fi
-
-if [[ -z "$(which git-stack)" ]]; then
-    cargo install git-stack
-fi
-
-if [[ -z "$(which npm)" ]]; then
-    npm install -g npm
-fi
+cargo install stylua git-stack
+pip3 install -U pynvim # Install Neovim dependency
+pip3 install --user tmuxp # A session manager for tmux
+npm install -g npm
 
 {{ end -}}

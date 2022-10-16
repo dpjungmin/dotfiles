@@ -1,7 +1,8 @@
 {{ if eq .chezmoi.os "darwin" -}}
-#!/bin/bash -x
 
-PACKAGES=(
+#!/usr/bin/env bash -x
+
+readonly PACKAGES=(
     fish
     starship
     tmux
@@ -36,27 +37,25 @@ PACKAGES=(
     bear
     dust
     fennel
+    emacs
 )
 
-CASKS=(
+readonly CASKS=(
     amethyst
     alacritty
     font-lekton-nerd-font
-    font-noto-nerd-font
 )
 
-FISH_PLUGINS=(
+readonly FISH_PLUGINS=(
     jorgebucaran/fisher
     jethrokuan/z
 )
 
-# Install Homebrew if it is not installed on the system
+# Install brew.
 if [[ -z "$(which brew)" ]]; then
-    printf '\n\n\e[33mHomebrew not found. \e[0mInstalling Homebrew...'
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-printf '\Initiating Homebrew...\n'
 brew update
 brew install ${PACKAGES[@]}
 brew cleanup
@@ -66,45 +65,28 @@ brew install --cask ${CASKS[@]}
 
 SHELL="$(which fish)"
 
+# Install fish plugins.
 if [[ "$SHELL" == "*/fish" ]]; then
     $SHELL << EOF
-
-    printf '\nInstalling Fisher...\n'
     curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
-
-    printf '\nInstalling fish-shell plugins...\n'
     fisher install ${FISH_PLUGINS[@]}
-
 EOF
 fi
 
-printf '\nInstalling other dependencies...\n'
-
-pip3 install -U pynvim # Install Neovim dependency
-
+# Install tmux plugin manager.
 if [[ ! -d "~/.tmux/plugins/tpm" ]]; then
-    printf '\nInstalling Tmux Plugin Manager...\n'
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-# Install rustup if it is not installed on the system
+# Install rustup.
 if [[ -z "$(which rustup)" ]]; then
-    printf '\n\n\e[33mrustup not found. \e[0mInstalling rustup...'
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
 
-if [[ -z "$(which stylua)" ]]; then
-    cargo install stylua
-fi
+cargo install stylua git-stack
+pip3 install -U pynvim # nvim dependency
+npm install -g npm
 
-if [[ -z "$(which git-stack)" ]]; then
-    cargo install git-stack
-fi
-
-if [[ -z "$(which npm)" ]]; then
-    npm install -g npm
-fi
-
-printf '\n\nDone!!\n'
+printf '\nDone!!\n'
 
 {{ end -}}
