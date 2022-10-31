@@ -1,6 +1,6 @@
 {{ if eq .chezmoi.os "linux" -}}
 
-#!/usr/bin/env bash -x
+#!/usr/bin/env bash
 
 readonly PACKAGES=(
     alacritty
@@ -41,6 +41,7 @@ readonly PACKAGES=(
     fennel
     emacs
     onefetch
+    r
 )
 
 readonly FISH_PLUGINS=(
@@ -74,8 +75,10 @@ if [[ -z "$(which rustup)" ]]; then
 fi
 
 cargo install stylua git-stack
-pip3 install -U pynvim # neovim dependency
+pip3 install -U pynvim
 pip3 install --user tmuxp # session manager for tmux
 npm install -g npm
+
+printf "\nCompleted!!\n"
 
 {{ end -}}

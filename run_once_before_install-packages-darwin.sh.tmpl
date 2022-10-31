@@ -39,6 +39,7 @@ readonly PACKAGES=(
     fennel
     emacs
     onefetch
+    r
 )
 
 readonly CASKS=(
@@ -60,9 +61,15 @@ fi
 brew update
 brew install ${PACKAGES[@]}
 brew cleanup
+
 brew tap homebrew/cask-fonts
+brew tap wez/wezterm
+
 brew install cask
 brew install --cask ${CASKS[@]}
+
+brew install --cask wez/wezterm/wezterm-nightly
+brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
 
 SHELL="$(which fish)"
 
@@ -85,9 +92,9 @@ if [[ -z "$(which rustup)" ]]; then
 fi
 
 cargo install stylua git-stack
-pip3 install -U pynvim # nvim dependency
+pip3 install -U pynvim
 npm install -g npm
 
-printf '\nDone!!\n'
+printf '\nCompleted!!\n'
 
 {{ end -}}

@@ -2,15 +2,15 @@
 # (optionally prefix these with bright-), or RGB value (hex)
 
 format = """
- $hostname[:](bright-black)$directory\
+$time$hostname[:](bright-black)$directory\
 $git_branch$git_commit$git_state$git_status\
-$fill $character $time
- [└─>](blue) """
+$character
+"""
 
 [character]
 format = "$symbol"
-success_symbol = "[ok](green)"
-error_symbol = "[err](red)"
+success_symbol = "[ | ](bright-black)"
+error_symbol = "[ | ](red)"
 disabled = false
 
 [directory]
