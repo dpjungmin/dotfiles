@@ -9,7 +9,7 @@ alias la="exa -aF"
 alias ll="exa -lF"
 alias lla="exa -alF"
 alias tree="exa --tree --git-ignore"
-alias cat="bat -p"
+alias cat="bat --plain"
 alias vim=nvim
 alias c=cargo
 alias cz=chezmoi
@@ -17,10 +17,11 @@ alias czd="chezmoi cd"
 alias cza="chezmoi --verbose apply"
 alias cze="chezmoi edit"
 alias czu="chezmoi update"
-alias czr="chezmoi --verbose apply --refresh-externals"
-alias czc="chezmoi state delete-bucket --bucket=scriptState"
+alias czc="chezmoi state delete-bucket --bucket=scriptState && chezmoi --verbose apply --refresh-externals"
 alias gc="git checkout"
 alias gs="git status"
+alias wt="wezterm"
+alias wtk="wezterm show-keys"
 
 # Set paths
 set -x PATH $PATH /usr/local/bin
