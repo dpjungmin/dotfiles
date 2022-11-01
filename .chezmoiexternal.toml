@@ -1,3 +1,8 @@
+[".config/wezterm"]
+    type = "git-repo"
+    url = "https://github.com/dpjungmin/wezterm.git"
+    refreshPeriod = "168h"
+
 [".config/nvim"]
     type = "git-repo"
     url = "https://github.com/dpjungmin/nvim.git"
