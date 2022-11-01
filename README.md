@@ -4,7 +4,7 @@
 
 ## Pre-installation
 
-You must have [fish](https://fishshell.com/) and a [nerd-font](https://www.nerdfonts.com/) installed on your machine.
+You must have [fish] and a [nerd-font] installed on your machine.
 
 Create a configuration file called `~/.config/chezmoi/chezmoi.toml` and define
 the following variables.
@@ -43,9 +43,21 @@ chezmoi update
 
 ---
 
-I use [chezmoi](https://www.chezmoi.io/) to manage my personal configuration
-files accross multiple machines.
+I use [chezmoi] to manage my personal configuration files accross multiple
+machines.
 
-I use [alacritty](https://alacritty.org/) as my terminal emulator and [fish](https://fishshell.com/) for my shell.
+I use [alacritty] as my terminal emulator and [fish] for my shell.
 
 This currently works for **macOS** and **Arch Linux**.
+
+---
+
+I am changing my terminal emulator to [wezterm], which is configured for
+**macOS** only for now.
+
+
+[alacritty]: https://alacritty.org/
+[chezmoi]: https://www.chezmoi.io/
+[fish]: https://fishshell.com/
+[nerd-font]: https://www.nerdfonts.com/
+[wezterm]: https://github.com/wez/wezterm
