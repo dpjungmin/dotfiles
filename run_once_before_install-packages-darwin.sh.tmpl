@@ -3,18 +3,18 @@
 #!/usr/bin/env bash -x
 
 readonly PACKAGES=(
-    fish starship
-    neovim emacs
-    binutils exa bat ripgrep fd zoxide btop dust onefetch
-    node lua python3 fennel
-    hyperfine
-    lazygit
-    telnet fping
-    chezmoi
-    cmake cmake-docs clang-format
-    black rust-analyzer
-    git-delta git-lfs
-    just gh, ctags, bear
+  fish starship
+  neovim emacs
+  binutils exa bat ripgrep fd zoxide btop dust onefetch
+  node lua python3 fennel
+  hyperfine
+  lazygit
+  telnet fping
+  chezmoi
+  cmake cmake-docs clang-format
+  black rust-analyzer
+  git-delta git-lfs
+  just gh, ctags, bear
 )
 
 readonly CASKS=(amethyst alacritty font-lekton-nerd-font)
@@ -23,7 +23,7 @@ readonly FISH_PLUGINS=(jorgebucaran/fisher jethrokuan/z)
 
 # Install brew.
 if [[ -z "$(which brew)" ]]; then
-    /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 brew update
@@ -43,27 +43,31 @@ SHELL="$(which fish)"
 
 # Install fish plugins.
 if [[ "$SHELL" == "*/fish" ]]; then
-    $SHELL << EOF
-    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
-    fisher install ${FISH_PLUGINS[@]}
+  $SHELL << EOF
+  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+  fisher install ${FISH_PLUGINS[@]}
 EOF
 fi
 
 # Install hiSHtory.
 if [[ -z "$(which hishtory)" ]]; then
   sudo curl https://hishtory.dev/install.py | python3 -
+else
+  hishtory update
 fi
 
 # Install warpd.
 if [[ -z "$(which warpd)" ]]; then
-    curl -L https://github.com/rvaiya/warpd/releases/download/v1.3.5/warpd-1.3.5-osx.tar.gz \
-    | sudo tar xzvfC - / \
-    && launchctl load /Library/LaunchAgents/com.warpd.warpd.plist
+  curl -L https://github.com/rvaiya/warpd/releases/download/v1.3.5/warpd-1.3.5-osx.tar.gz \
+  | sudo tar xzvfC - / \
+  && launchctl load /Library/LaunchAgents/com.warpd.warpd.plist
 fi
 
 # Install rustup.
 if [[ -z "$(which rustup)" ]]; then
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+else
+  rustup update
 fi
 
 cargo install stylua git-stack
