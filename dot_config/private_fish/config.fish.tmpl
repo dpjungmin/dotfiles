@@ -29,6 +29,7 @@ set -x PATH $PATH ~/.local/bin
 set -x PATH $PATH ~/.emacs.d/bin
 set -x PATH $PATH ~/.cargo/bin
 set -x PATH $PATH ~/go/bin
+set -x PATH $PATH ~/.hishtory
 
 # Set environment variables
 set -Ux THEME {{ .theme }}
@@ -93,3 +94,5 @@ end
 
 zoxide init fish | source
 starship init fish | source
+
+source ~/.hishtory/config.fish
