@@ -65,14 +65,14 @@ disabled = false
 [git_status]
 format = '( [\[$all_status$ahead_behind\]]($style))'
 conflicted = "="
-ahead = "(ahead)"
-behind = "(behind)"
-diverged = "⇕"
-up_to_date = ""
+ahead = "[⇡${count}](white)"
+behind = "[⇣${count}](white)"
+diverged = "[⇕⇡${ahead_count}⇣${behind_count}](white)"
+up_to_date = "[✓](white)"
 untracked = "?"
 stashed = "$"
 modified = "!"
-staged = "+"
+staged = '[+](green)'
 renamed = "»"
 deleted = "✘"
 style = "bold red"
