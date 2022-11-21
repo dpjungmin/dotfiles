@@ -9,9 +9,6 @@ variables.
 
 ```toml
 [data]
-  # The $EDITOR envvar will be set to this value
-  editor = "nvim"
-
   # Global git configurations
   gitconfig.name = "David Park"
   gitconfig.email = "dpjungmin@gmail.com"
