@@ -7,3 +7,8 @@
     type = "git-repo"
     url = "https://github.com/dpjungmin/nvim.git"
     refreshPeriod = "168h"
+
+["~/nvim-plugins"]
+    type = "git-repo"
+    url = "https://github.com/dpjungmin/tissue.nvim"
+    refreshPeriod = "168h"
