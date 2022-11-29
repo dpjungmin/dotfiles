@@ -63,20 +63,12 @@ function mkcd -d "Create a directory and set CWD"
 end
 
 function fish_greeting
+    set os string join '.' (uname -s) (uname -m)
+
     echo
-
-    {{- if eq .chezmoi.os "darwin" }}
-    echo -e (uname -rs | awk '{print " \\\\e[1mOS: \\\\e[0;32m"$0"\\\\e[0m"}')
-    echo -e (uname -n | awk '{print " \\\\e[1mHostname: \\\\e[0;32m"$0"\\\\e[0m"}')
-    echo -e (uptime | sed 's/^up //' | awk '{print " \\\\e[1mUptime: \\\\e[0;32m"$0"\\\\e[0m"}')
-    {{- end }}
-
-    {{- if eq .chezmoi.os "linux" }}
-    echo -e (uname -ro | awk '{print " \\\\e[1mOS: \\\\e[0;32m"$0"\\\\e[0m"}')
-    echo -e (uname -n | awk '{print " \\\\e[1mHostname: \\\\e[0;32m"$0"\\\\e[0m"}')
-    echo -e (uptime -p | sed 's/^up //' | awk '{print " \\\\e[1mUptime: \\\\e[0;32m"$0"\\\\e[0m"}')
-    {{- end }}
-
+    echo -e ($os | awk '{print " \\\\e[1mos: \\\\e[0;32m"$0"\\\\e[0m"}')
+    echo -e (uname -n | awk '{print " \\\\e[1mhostname: \\\\e[0;32m"$0"\\\\e[0m"}')
+    echo -e (uptime | sed 's/^up //' | awk '{print " \\\\e[1muptime: \\\\e[0;32m"$0"\\\\e[0m"}')
     echo
 
     # Display TODOs if FILE exists
