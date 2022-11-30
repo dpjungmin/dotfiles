@@ -4,11 +4,12 @@
 
 readonly PACKAGES=(
   neovim emacs
-  node lua python3 fennel
+  node yarn lua python3 fennel
   binutils exa bat ripgrep fd zoxide btop dust onefetch fzf
   fish starship chezmoi hyperfine lazygit telnet fping just gh ctags bear
   cmake cmake-docs clang-format
-  black rust-analyzer
+  rust-analyzer
+  black fnlfmt
   git-delta git-lfs
   lua-language-server
 )
@@ -17,7 +18,7 @@ readonly CASKS=(amethyst alacritty font-lekton-nerd-font)
 
 readonly FISH_PLUGINS=(jorgebucaran/fisher jethrokuan/z)
 
-readonly NPM_PACKAGES=(npm vim-language-server bash-language-server typescript-language-server typescript)
+readonly NPM_PACKAGES=(npm vim-language-server bash-language-server typescript-language-server typescript @fsouza/prettierd)
 
 # Install brew.
 if [[ -z "$(which brew)" ]]; then
