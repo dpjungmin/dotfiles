@@ -4,7 +4,7 @@
 format = """
 $time$hostname[:](bright-black)$directory\
 $git_branch$git_commit$git_state$git_status\
-$character
+$sudo$character
 """
 
 [character]
@@ -110,3 +110,9 @@ style = "bright-black"
 utc_time_offset = "local"
 disabled = false
 time_range = "00:00:00-23:59:59"
+
+[sudo]
+format = "[$symbol]($style)"
+symbol = " 🧙"
+style = "bold blue"
+disabled = false
