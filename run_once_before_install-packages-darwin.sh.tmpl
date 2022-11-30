@@ -3,24 +3,21 @@
 #!/usr/bin/env bash -x
 
 readonly PACKAGES=(
-  fish starship
   neovim emacs
-  binutils exa bat ripgrep fd zoxide btop dust onefetch fzf
   node lua python3 fennel
-  hyperfine
-  lazygit
-  telnet fping
-  chezmoi
+  binutils exa bat ripgrep fd zoxide btop dust onefetch fzf
+  fish starship chezmoi hyperfine lazygit telnet fping just gh ctags bear
   cmake cmake-docs clang-format
   black rust-analyzer
   git-delta git-lfs
-  just gh ctags bear
   lua-language-server
 )
 
 readonly CASKS=(amethyst alacritty font-lekton-nerd-font)
 
 readonly FISH_PLUGINS=(jorgebucaran/fisher jethrokuan/z)
+
+readonly NPM_PACKAGES=(npm vim-language-server bash-language-server typescript-language-server typescript)
 
 # Install brew.
 if [[ -z "$(which brew)" ]]; then
@@ -69,7 +66,7 @@ sh $(brew --prefix)/opt/fzf/install --all
 
 cargo install stylua git-stack
 pip3 install -U pynvim
-npm install -g npm vim-language-server bash-language-server
+npm install --global --force ${NPM_PACKAGES[@]}
 
 printf '\nCompleted!!\n'
 
