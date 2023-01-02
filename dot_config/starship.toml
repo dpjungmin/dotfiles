@@ -2,7 +2,7 @@
 # (optionally prefix these with bright-), or RGB value (hex)
 
 format = """
-$time$hostname[:](bright-black)$directory\
+$hostname[:](bright-black)$directory\
 $git_branch$git_commit$git_state$git_status\
 $sudo$character
 """
@@ -14,7 +14,7 @@ error_symbol = "[ | ](red)"
 disabled = false
 
 [directory]
-truncation_length = 3
+truncation_length = 2
 truncate_to_repo = true
 format = "[$path]($style)[$read_only]($read_only_style)"
 style = "yellow"
@@ -22,7 +22,7 @@ disabled = false
 read_only = "🔒"
 read_only_style = "red"
 truncation_symbol = ""
-repo_root_style = "red"
+repo_root_style = "bold yellow"
 repo_root_format = "[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)"
 home_symbol = "~"
 use_os_path_sep = true
@@ -34,8 +34,7 @@ disabled = false
 
 [git_branch]
 always_show_remote = false
-format = " [-](bright-black) [$symbol$branch(:$remote_branch)]($style)"
-symbol = " "
+format = "[:](bright-black)[$branch(:$remote_branch)]($style)"
 style = "green"
 only_attached = false
 ignore_branches = []
@@ -43,7 +42,7 @@ disabled = false
 
 [git_commit]
 commit_hash_length = 7
-format = " [\\($hash\\)]($style)"
+format = "[:](bright-black)[$hash]($style)"
 style = "green"
 only_detached = true
 tag_disabled = true
@@ -59,23 +58,23 @@ bisect = "BISECTING"
 am = "AM"
 am_or_rebase = "AM/REBASE"
 style = "bold green"
-format = " [\\(](bright-black)[$state($progress_current/$progress_total)]($style)[\\)](bright-black)"
+format = "[\\[](bright-black)[$state ($progress_current/$progress_total)]($style)[\\]](bright-black)"
 disabled = false
 
 [git_status]
-format = '( [\[$all_status$ahead_behind\]]($style))'
-conflicted = "="
-ahead = "[⇡${count}](white)"
-behind = "[⇣${count}](white)"
-diverged = "[⇕⇡${ahead_count}⇣${behind_count}](white)"
+format = "([\\[](bright-black)[$all_status$ahead_behind]($style)[\\]](bright-black))"
+conflicted = "c"
+ahead = "[⇡${count}]"
+behind = "[⇣${count}]"
+diverged = "[⇕⇡${ahead_count}⇣${behind_count}]"
 up_to_date = ""
 untracked = "?"
-stashed = "$"
-modified = "M"
-staged = '[+](green)'
-renamed = "»"
-deleted = "D"
-style = "bold red"
+stashed = "s"
+modified = "m"
+staged = '+'
+renamed = "r"
+deleted = "d"
+style = "red"
 ignore_submodules = false
 disabled = false
 
@@ -93,13 +92,13 @@ style = "bold yellow"
 disabled = false
 
 [rust]
-format = " [-](bright-black) [$symbol($version )]($style)"
+format = " [-](bright-black) [$symbol($version)]($style)"
 version_format = "v${raw}"
-symbol = "⚙️ "
+symbol = "🦀 "
 detect_extensions = ["rs"]
 detect_files = ["Cargo.toml"]
 detect_folders = []
-style = "purple"
+style = "white"
 disabled = false
 
 [time]
@@ -113,6 +112,6 @@ time_range = "00:00:00-23:59:59"
 
 [sudo]
 format = "[$symbol]($style)"
-symbol = " 🧙"
-style = "bold blue"
+symbol = "[:](bright-black)🧞"
+style = "bold bright-blue"
 disabled = false
