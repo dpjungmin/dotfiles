@@ -7,6 +7,8 @@ $git_branch$git_commit$git_state$git_status\
 $sudo$character
 """
 
+command_timeout = 1000
+
 [character]
 format = "$symbol"
 success_symbol = "[ | ](bright-black)"
@@ -17,12 +19,12 @@ disabled = false
 truncation_length = 2
 truncate_to_repo = true
 format = "[$path]($style)[$read_only]($read_only_style)"
-style = "yellow"
+style = "purple"
 disabled = false
 read_only = "🔒"
 read_only_style = "red"
 truncation_symbol = ""
-repo_root_style = "bold yellow"
+repo_root_style = "bold purple"
 repo_root_format = "[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)"
 home_symbol = "~"
 use_os_path_sep = true

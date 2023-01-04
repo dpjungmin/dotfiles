@@ -2,73 +2,72 @@
 
 #!/usr/bin/env bash -x
 
-readonly PACKAGES=(
-  neovim emacs
-  node yarn lua python3 fennel
-  binutils exa bat ripgrep fd zoxide btop dust onefetch fzf
-  fish starship chezmoi hyperfine lazygit telnet fping just gh ctags bear
-  cmake cmake-docs clang-format
-  rust-analyzer
-  black
-  git-delta git-lfs
-  lua-language-server
-  universal-ctags
-)
-
+readonly PACKAGES=(neovim node yarn lua python3 fennel binutils exa bat ripgrep fd zoxide btop dust
+  onefetch fzf fish starship chezmoi hyperfine lazygit telnet fping just gh ctags bear cmake black
+  cmake-docs clang-format rust-analyzer git-delta git-lfs lua-language-server)
 readonly CASKS=(amethyst alacritty font-lekton-nerd-font)
-
 readonly FISH_PLUGINS=(jorgebucaran/fisher jethrokuan/z lilyball/nix-env.fish)
+readonly NPM_PACKAGES=(npm vim-language-server bash-language-server typescript-language-server typescript
+  @fsouza/prettierd)
 
-readonly NPM_PACKAGES=(npm vim-language-server bash-language-server typescript-language-server typescript @fsouza/prettierd)
+install_brew() {
+  # Install `brew` if it is not installed on the system
+  if [[ -z "$(which brew)" ]]; then
+    /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
 
-# Install brew.
-if [[ -z "$(which brew)" ]]; then
-  /usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
+  brew update
+  brew install ${PACKAGES[@]}
+  brew cleanup
 
-brew update
-brew install ${PACKAGES[@]}
-brew cleanup
+  brew tap homebrew/cask-fonts
+  brew tap wez/wezterm
 
-brew tap homebrew/cask-fonts
-brew tap wez/wezterm
+  brew install cask
+  brew install --cask ${CASKS[@]}
 
-brew install cask
-brew install --cask ${CASKS[@]}
+  brew install --cask wez/wezterm/wezterm-nightly
+  brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
+}
 
-brew install --cask wez/wezterm/wezterm-nightly
-brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
+install_fish_plugins() {
+  local sh="$(which fish)"
 
-SHELL="$(which fish)"
-
-# Install fish plugins.
-if [[ "$SHELL" == "*/fish" ]]; then
-  $SHELL << EOF
-  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
-  fisher install ${FISH_PLUGINS[@]}
+  # Install fish plugins
+  if [[ "$sh" == "*/fish" ]]; then
+    $sh << EOF
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+    fisher install ${FISH_PLUGINS[@]}
 EOF
-fi
+  fi
 
-# Install warpd.
-if [[ -z "$(which warpd)" ]]; then
-  curl -L https://github.com/rvaiya/warpd/releases/download/v1.3.5/warpd-1.3.5-osx.tar.gz \
-  | sudo tar xzvfC - / \
-  && launchctl load /Library/LaunchAgents/com.warpd.warpd.plist
-fi
+  # Install useful key bindings and fuzzy completion
+  sh $(brew --prefix)/opt/fzf/install --all
+}
 
-# Install rustup.
-if [[ -z "$(which rustup)" ]]; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-else
-  rustup update
-fi
+install_others() {
+  # Install `warpd`
+  if [[ -z "$(which warpd)" ]]; then
+    curl -L https://github.com/rvaiya/warpd/releases/download/v1.3.5/warpd-1.3.5-osx.tar.gz \
+    | sudo tar xzvfC - / \
+    && launchctl load /Library/LaunchAgents/com.warpd.warpd.plist
+  fi
 
-# Install useful key bindings and fuzzy completion
-sh $(brew --prefix)/opt/fzf/install --all
+  # Install `rustup`
+  if [[ -z "$(which rustup)" ]]; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  else
+    rustup update
+  fi
 
-cargo install stylua git-stack
-pip3 install -U pynvim
-npm install --global --force ${NPM_PACKAGES[@]}
+  cargo install stylua git-stack
+  pip3 install -U pynvim
+  npm install --global --force ${NPM_PACKAGES[@]}
+}
+
+install_brew
+install_fish_plugins
+install_others
 
 printf '\nCompleted!!\n'
 
