@@ -60,7 +60,7 @@ install_others() {
     rustup update
   fi
 
-  cargo install stylua git-stack
+  cargo install stylua git-stack cargo-expand
   pip3 install -U pynvim
   npm install --global --force ${NPM_PACKAGES[@]}
 }
