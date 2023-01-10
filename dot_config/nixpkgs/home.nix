@@ -12,14 +12,7 @@
       git
 
       # language support
-      # llvmPackages.clang-unwrapped
-      # cmake
-      # clang
       tree-sitter
-      # clang-tools
-      # clangStdenv
-      # opencl-clang
-      # libcxx
       gcc
       gtest
       rustup
@@ -62,6 +55,8 @@
       eww-wayland
       jq
       delta
+      fzf
+      zoxide
     ];
 
     file = {

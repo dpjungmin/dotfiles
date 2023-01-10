@@ -2,13 +2,61 @@
 
 #!/usr/bin/env bash -x
 
-readonly PACKAGES=(neovim node yarn lua python3 fennel binutils exa bat ripgrep fd zoxide btop dust
-  onefetch fzf fish starship chezmoi hyperfine lazygit telnet fping just gh ctags bear cmake black
-  cmake-docs clang-format rust-analyzer git-delta git-lfs lua-language-server)
-readonly CASKS=(amethyst alacritty font-lekton-nerd-font)
-readonly FISH_PLUGINS=(jorgebucaran/fisher jethrokuan/z lilyball/nix-env.fish)
-readonly NPM_PACKAGES=(npm vim-language-server bash-language-server typescript-language-server typescript
-  @fsouza/prettierd)
+readonly PACKAGES=(
+  neovim
+  node
+  yarn
+  lua
+  python3
+  fennel
+  binutils
+  exa
+  bat
+  ripgrep
+  fd
+  zoxide
+  btop
+  dust
+  onefetch
+  fzf
+  fish
+  starship
+  chezmoi
+  hyperfine
+  lazygit
+  telnet
+  fping
+  just
+  gh
+  ctags
+  bear
+  cmake
+  black
+  cmake-docs
+  clang-format
+  rust-analyzer
+  git-delta
+  git-lfs
+  lua-language-server
+)
+readonly CASKS=(
+  amethyst
+  alacritty
+  font-lekton-nerd-font
+)
+readonly FISH_PLUGINS=(
+  jorgebucaran/fisher
+  jethrokuan/z lilyball/nix-env.fish
+)
+readonly NPM_PACKAGES=(
+  npm
+  vim-language-server
+  bash-language-server
+  typescript-language-server
+  typescript
+  @fsouza/prettierd
+  prettier
+)
 
 install_brew() {
   # Install `brew` if it is not installed on the system

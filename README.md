@@ -4,6 +4,14 @@
 
 ## Installation
 
+If you have [chezmoi] installed on your system,
+
+```shell
+chezmoi init --apply dpjungmin
+```
+
+Otherwise,
+
 ```shell
 sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply dpjungmin
 ```
