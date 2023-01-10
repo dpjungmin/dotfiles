@@ -1,0 +1,87 @@
+$bg: transparent;
+$fg: #e0f0ef;
+$light-fg: #fcfefd;
+$black: #22272e;
+$light-black: #434846;
+$orange: #f69d50;
+$purple: #b0a4e3;
+
+* {
+  all: unset;
+}
+
+.sidebar {
+  font-size: 1.4em;
+  font-family: "Lekton Nerd Font";
+  padding: 200px 8px;
+  color: $fg;
+  background-color: $bg;
+  border-radius: 4px;
+}
+
+.workspaces {
+  button {
+    background-color: transparent;
+    border-radius: 4px;
+    padding: 10px 15px;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    &.active {
+      font-weight: bold;
+      color: $orange;
+    }
+
+    &.inactive {
+      color: Grey;
+
+      &:hover {
+        font-weight: bold;
+        color: $orange;
+      }
+    }
+  }
+}
+
+.wifi {
+  margin-bottom: 20px;
+
+  .connected {
+  }
+
+  .disconnected {
+    background-size: cover;
+    background-image: url('images/no-internet.png');
+    background-position: center;
+    min-height: 55px;
+    min-width: 50px;
+  }
+}
+
+.battery {
+  margin-bottom: 20px;
+  font-family: monospace;
+  font-size: .8em;
+
+  .charging {
+  }
+}
+
+.time {
+  font-family: monospace;
+  font-size: .9em;
+  font-weight: bold;
+
+  .hour {
+    color: $light-fg;
+    padding-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  .minute {
+    color: $fg;
+    padding-bottom: 10px;
+  }
+}
