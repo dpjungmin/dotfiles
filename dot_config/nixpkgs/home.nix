@@ -58,9 +58,16 @@
       delta
       fzf
       zoxide
+      wget
+      du-dust
     ];
 
     file = {
     };
+  };
+
+  services.dropbox = {
+    enable = true;
+    path = "${config.home.homeDirectory}/Dropbox";
   };
 }
