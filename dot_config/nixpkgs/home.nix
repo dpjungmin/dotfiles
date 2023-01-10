@@ -42,6 +42,7 @@
       exa
       bat
       ripgrep
+      igrep
       fd
       lazygit
       fortune
