@@ -13,6 +13,7 @@ readonly PACKAGES=(
   exa
   bat
   ripgrep
+  igrep
   fd
   zoxide
   btop
@@ -65,11 +66,13 @@ install_brew() {
   fi
 
   brew update
-  brew install ${PACKAGES[@]}
   brew cleanup
 
   brew tap homebrew/cask-fonts
   brew tap wez/wezterm
+  brew tap konradsz/igrep https://github.com/konradsz/igrep.git
+
+  brew install ${PACKAGES[@]}
 
   brew install cask
   brew install --cask ${CASKS[@]}
