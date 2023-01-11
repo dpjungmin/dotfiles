@@ -15,6 +15,7 @@
       tree-sitter
       gcc
       gtest
+      clang-tools
       rustup
       nodejs
       nodePackages_latest.typescript
