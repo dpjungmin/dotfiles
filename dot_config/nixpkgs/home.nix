@@ -61,6 +61,8 @@
       zoxide
       wget
       du-dust
+      wasm-pack
+      cargo-generate
     ];
 
     file = {
