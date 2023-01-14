@@ -2,7 +2,7 @@
 # (optionally prefix these with bright-), or RGB value (hex)
 
 format = """
-$hostname[:](white)$directory\
+$hostname[:](bright-white)$directory\
 $git_branch$git_commit$git_state$git_status\
 $sudo$character
 """
@@ -11,7 +11,7 @@ command_timeout = 1000
 
 [character]
 format = "$symbol"
-success_symbol = "[ | ](white)"
+success_symbol = "[ | ](bright-white)"
 error_symbol = "[ | ](red)"
 disabled = false
 
@@ -36,7 +36,7 @@ disabled = false
 
 [git_branch]
 always_show_remote = false
-format = "[:](white)[$branch(:$remote_branch)]($style)"
+format = "[:](bright-white)[$branch(:$remote_branch)]($style)"
 style = "green"
 only_attached = false
 ignore_branches = []
@@ -44,7 +44,7 @@ disabled = false
 
 [git_commit]
 commit_hash_length = 7
-format = "[:](white)[$hash]($style)"
+format = "[:](bright-white)[$hash]($style)"
 style = "green"
 only_detached = true
 tag_disabled = true
@@ -60,11 +60,11 @@ bisect = "BISECTING"
 am = "AM"
 am_or_rebase = "AM/REBASE"
 style = "bold green"
-format = "[\\[](white)[$state ($progress_current/$progress_total)]($style)[\\]](white)"
+format = "[\\[](bright-white)[$state ($progress_current/$progress_total)]($style)[\\]](bright-white)"
 disabled = false
 
 [git_status]
-format = "([\\[](white)[$all_status$ahead_behind]($style)[\\]](white))"
+format = "([\\[](bright-white)[$all_status$ahead_behind]($style)[\\]](bright-white))"
 conflicted = "c"
 ahead = "⇡${count}"
 behind = "⇣${count}"
@@ -94,26 +94,26 @@ style = "bold yellow"
 disabled = false
 
 [rust]
-format = " [-](white) [$symbol($version)]($style)"
+format = " [-](bright-white) [$symbol($version)]($style)"
 version_format = "v${raw}"
 symbol = "🦀 "
 detect_extensions = ["rs"]
 detect_files = ["Cargo.toml"]
 detect_folders = []
-style = "white"
+style = "bright-white"
 disabled = false
 
 [time]
 format = "[\\[$time\\]]($style) "
 use_12hr = false
 time_format = "%H:%M"
-style = "white"
+style = "bright-white"
 utc_time_offset = "local"
 disabled = false
 time_range = "00:00:00-23:59:59"
 
 [sudo]
 format = "[$symbol]($style)"
-symbol = "[:](white)🧞"
+symbol = "[:](bright-white)🧞"
 style = "bold bright-blue"
 disabled = false
