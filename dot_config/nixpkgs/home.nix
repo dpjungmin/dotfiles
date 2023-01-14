@@ -18,7 +18,7 @@
       clang-tools
       rustup
       nodejs
-      nodePackages_latest.typescript
+      nodePackages.typescript
 
       # language servers
       sumneko-lua-language-server
