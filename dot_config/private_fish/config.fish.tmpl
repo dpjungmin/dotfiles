@@ -48,6 +48,8 @@ end
 
 # Set custom key bindings
 bind \cd 'exit' # Exit the shell when Control+D is pressed
+bind \cs 'grim -g $(slurp) $(date +'screenshot-%Y%m%d-%H%M%S.png')'
+bind \cg 'git diff'
 
 # This will run the mkdir command, and if it is successful, change the current
 # working directory to the one just created.

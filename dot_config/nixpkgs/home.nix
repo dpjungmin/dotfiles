@@ -63,6 +63,8 @@
       du-dust
       wasm-pack
       cargo-generate
+      grim
+      slurp
     ];
 
     file = {
