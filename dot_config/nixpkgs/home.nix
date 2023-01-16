@@ -19,6 +19,7 @@
       rustup
       nodejs
       nodePackages.typescript
+      gnumake
 
       # language servers
       sumneko-lua-language-server
