@@ -20,6 +20,7 @@
       nodejs
       nodePackages.typescript
       gnumake
+      binaryen
 
       # language servers
       sumneko-lua-language-server
@@ -66,6 +67,7 @@
       cargo-generate
       grim
       slurp
+      yarn
     ];
 
     file = {
