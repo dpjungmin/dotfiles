@@ -10,6 +10,7 @@
       vim
       neovim
       git
+      wabt
 
       # language support
       tree-sitter
@@ -20,9 +21,11 @@
       nodejs
       nodePackages.typescript
       gnumake
+      cmake
       ninja
       binaryen
       python311
+      emscripten
 
       # language servers
       sumneko-lua-language-server
