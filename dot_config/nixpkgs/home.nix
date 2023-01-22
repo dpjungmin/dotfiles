@@ -20,6 +20,7 @@
       nodejs
       nodePackages.typescript
       gnumake
+      ninja
       binaryen
       python311
 
