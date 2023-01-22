@@ -21,6 +21,7 @@
       nodePackages.typescript
       gnumake
       binaryen
+      python311
 
       # language servers
       sumneko-lua-language-server
