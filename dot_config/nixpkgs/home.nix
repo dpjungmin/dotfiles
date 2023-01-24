@@ -45,6 +45,7 @@
       firefox
       thunderbird
       obsidian
+      slack
 
       # utils
       exa
