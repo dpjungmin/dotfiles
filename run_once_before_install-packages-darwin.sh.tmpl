@@ -40,15 +40,18 @@ readonly PACKAGES=(
   git-lfs
   lua-language-server
 )
+
 readonly CASKS=(
   amethyst
   alacritty
   font-lekton-nerd-font
 )
+
 readonly FISH_PLUGINS=(
   jorgebucaran/fisher
   jethrokuan/z lilyball/nix-env.fish
 )
+
 readonly NPM_PACKAGES=(
   npm
   vim-language-server
@@ -111,7 +114,7 @@ install_others() {
     rustup update
   fi
 
-  cargo install stylua git-stack cargo-expand
+  cargo install stylua git-stack cargo-expand difftastic
   pip3 install -U pynvim
   npm install --global --force ${NPM_PACKAGES[@]}
 }

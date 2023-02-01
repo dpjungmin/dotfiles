@@ -17,6 +17,7 @@
     root = rev-parse --show-toplevel
     path = rev-parse --show-prefix
     dfn = diff --diff-filter=d --name-only HEAD~1 HEAD
+    dft = difftool
 
 [init]
     defaultBranch = main
@@ -32,7 +33,6 @@
 
 [core]
     editor = nvim
-    pager = delta
 
 [interactive]
     diffFilter = delta --color-only
@@ -41,25 +41,18 @@
     conflictstyle = diff3
 
 [diff]
+    external = difft
+    tool = difftastic
     colorMoved = default
 
-[delta]
-    features = side-by-side line-numbers decorations
-    syntax-theme = Dracula
-    plus-style = syntax "#003800"
-    minus-style = syntax "#3f0001"
+[difftool]
+    prompt = false
 
-[delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
-    hunk-header-decoration-style = cyan box ul
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
 
-[delta "line-numbers"]
-    line-numbers-left-style = cyan
-    line-numbers-right-style = cyan
-    line-numbers-minus-style = 124
-    line-numbers-plus-style = 28
+[pager]
+    difftool = true
 
 [filter "lfs"]
     clean = git-lfs clean -- %f
