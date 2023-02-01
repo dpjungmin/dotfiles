@@ -42,9 +42,9 @@ switch (uname)
     case Linux
         alias yank="xclip -selection clipboard"
     case Darwin
-        alias python=python3
         set -x PATH $PATH /opt/homebrew/bin
         set -x PATH $PATH ~/opt/anaconda3/bin
+        set -x PATH $PATH (brew --prefix)/opt/python/libexec/bin
     case '*'
 end
 
