@@ -22,7 +22,7 @@ alias czc="chezmoi state delete-bucket --bucket=scriptState && chezmoi --verbose
 alias gc="git checkout"
 alias gs="git status"
 alias gd="git diff"
-alias wez="wezterm"
+alias wez=wezterm
 alias wezk="wezterm show-keys"
 
 # Set paths
@@ -42,6 +42,7 @@ switch (uname)
     case Linux
         alias yank="xclip -selection clipboard"
     case Darwin
+        alias python=python3
         set -x PATH $PATH /opt/homebrew/bin
         set -x PATH $PATH ~/opt/anaconda3/bin
     case '*'
