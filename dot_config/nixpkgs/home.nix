@@ -74,6 +74,7 @@
       grim
       slurp
       yarn
+      difftastic
     ];
 
     file = {
