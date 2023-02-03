@@ -26,6 +26,7 @@
       binaryen
       python311
       emscripten
+      jdk
 
       # language servers
       sumneko-lua-language-server
@@ -46,6 +47,7 @@
       thunderbird
       obsidian
       slack
+      discord
 
       # utils
       exa
@@ -75,6 +77,9 @@
       slurp
       yarn
       difftastic
+      file
+      ltrace
+      strace
     ];
 
     file = {
