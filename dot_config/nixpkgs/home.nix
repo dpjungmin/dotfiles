@@ -38,12 +38,13 @@
       rust-analyzer
       stylua
       nodePackages_latest.prettier
+      google-java-format
 
       # dependencies
       python310Packages.pynvim
 
       # applications
-      firefox
+      firefox-devedition-bin
       thunderbird
       obsidian
       slack
@@ -80,6 +81,7 @@
       file
       ltrace
       strace
+      unzip
     ];
 
     file = {
