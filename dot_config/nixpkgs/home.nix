@@ -10,7 +10,9 @@
       vim
       neovim
       git
+      git-lfs
       wabt
+      helix
 
       # language support
       tree-sitter
