@@ -35,6 +35,7 @@
       nodePackages_latest.vim-language-server
       nodePackages_latest.bash-language-server
       nodePackages_latest.typescript-language-server
+      python310Packages.python-lsp-server
 
       # formatters
       rust-analyzer
@@ -76,6 +77,8 @@
       du-dust
       wasm-pack
       cargo-generate
+      cargo-geiger
+      cargo-watch
       grim
       slurp
       yarn

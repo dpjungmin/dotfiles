@@ -67,6 +67,14 @@ readonly NPM_PACKAGES=(
   serve
 )
 
+readonly CRATES=(
+  stylua
+  git-stack
+  cargo-expand
+  difftastic
+  cargo-watch
+)
+
 install_brew() {
   # Install `brew` if it is not installed on the system
   if [[ -z "$(which brew)" ]]; then
@@ -119,7 +127,7 @@ install_others() {
     rustup update
   fi
 
-  cargo install stylua git-stack cargo-expand difftastic
+  cargo install ${CRATES[@]}
   pip3 install -U pynvim
   npm install --global --force ${NPM_PACKAGES[@]}
 }
