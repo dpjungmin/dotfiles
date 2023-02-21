@@ -1,87 +1,97 @@
-$bg: transparent;
-$fg: #e0f0ef;
-$light-fg: #fcfefd;
-$black: #22272e;
-$light-black: #434846;
-$orange: #f69d50;
-$purple: #b0a4e3;
-
 * {
   all: unset;
 }
 
-.sidebar {
+.status-bar {
   font-size: 1.4em;
   font-family: "Lekton Nerd Font";
-  padding: 200px 8px;
-  color: $fg;
-  background-color: $bg;
+  padding-left: 50px;
+  padding-right: 20px;
+  color: #ffffff;
+  background-color: #2a2e33;
   border-radius: 4px;
 }
 
-.workspaces {
-  button {
-    background-color: transparent;
-    border-radius: 4px;
-    padding: 10px 15px;
+.left {
+  padding: 5px 0;
 
-    &:not(:last-child) {
-      margin-bottom: 10px;
-    }
+  .workspaces {
+    margin-right: 50px;
 
-    &.active {
-      font-weight: bold;
-      color: $orange;
-    }
+    button {
+      font-size: 0.7em;
+      border: 1px solid #636e7b;
+      padding: 0 17px;
 
-    &.inactive {
-      color: Grey;
+      &:not(:last-child) {
+        margin-right: 7px;
+      }
 
-      &:hover {
+      &.active {
         font-weight: bold;
-        color: $orange;
+        color: #30dff3;
+        border: 1px solid #30dff3;
+      }
+
+      &.inactive {
+        color: #ffffff;
       }
     }
   }
 }
 
-.wifi {
-  margin-bottom: 20px;
+.right {
+  .bluetooth {
+    font-family: monospace;
+    font-size: .8em;
 
-  .connected {
+    .connected {
+      padding: 0 20px;
+    }
+
+    .disconnected {
+    }
   }
 
-  .disconnected {
-    background-size: cover;
-    background-image: url('images/no-internet.png');
-    background-position: center;
-    min-height: 55px;
-    min-width: 50px;
-  }
-}
+  .wifi {
+    font-family: monospace;
+    font-size: .8em;
+    padding: 0 20px;
 
-.battery {
-  margin-bottom: 20px;
-  font-family: monospace;
-  font-size: .8em;
+    .connected {
+    }
 
-  .charging {
-  }
-}
-
-.time {
-  font-family: monospace;
-  font-size: .9em;
-  font-weight: bold;
-
-  .hour {
-    color: $light-fg;
-    padding-top: 10px;
-    margin-bottom: 5px;
+    .disconnected {
+      background-size: cover;
+      background-image: url('images/no-internet.png');
+      background-position: center;
+      min-height: 55px;
+      min-width: 50px;
+    }
   }
 
-  .minute {
-    color: $fg;
-    padding-bottom: 10px;
+  .battery {
+    color: #8ac361;
+    font-family: monospace;
+    font-size: .8em;
+    padding: 0 20px;
+
+    .charging {
+        color: #f0c239;
+    }
+  }
+
+  .time {
+    font-family: monospace;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0 20px;
+
+    .hour {
+      margin-right: 5px;
+    }
+
+    .minute {
+    }
   }
 }

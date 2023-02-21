@@ -1,72 +1,80 @@
-(defwindow sidebar
+(defwindow status-bar
   :monitor 0
   :geometry (geometry :x "0"
                       :y "0"
-                      :width "60px"
-                      :height "100%"
-                      :anchor "left center")
-  :stacking "fg"
+                      :width "100%"
+                      :height "50px"
+                      :anchor "top center")
+  :stacking "bg"
   :exclusive false
   :focusable true
-  (sidebar))
+  (status-bar))
 
-(defwidget sidebar []
-  (box :class "sidebar"
-       :orientation "vertical"
-    (top)
-    (bottom)))
+(defwidget status-bar []
+  (box :class "status-bar"
+    (left)
+    (right)))
 
-(defwidget top []
-  (box :class "top"
-       :valign "start"
-       :orientation "vertical"
+(defwidget left []
+  (box :class "left"
+       :halign "start"
        :space-evenly false
-    (workspaces)))
+    (workspaces)
+    (active-window)))
 
-(defwidget bottom []
-  (box :class "bottom"
-       :valign "end"
-       :orientation "vertical"
+(defwidget right []
+  (box :class "right"
+       :halign "end"
        :space-evenly false
     (wifi)
+    (bluetooth)
     (battery)
     (time)))
 
 (defwidget workspaces []
   (box :class "workspaces"
-       :orientation "vertical"
        :space-evenly false
     (for workspace in workspaces
       (button :class {active-workspace == workspace ? "active" : "inactive"}
-              :onclick "hyprctl dispatch workspace ${workspace}" 
+              :onclick "hyprctl dispatch workspace ${workspace}"
         workspace))))
+
+(defwidget active-window []
+  (box :class "active-window"
+    (button :class "active-window" {active-window == "null" ? "" : active-window})))
+
+(defwidget bluetooth []
+  (box :class "bluetooth"
+    (button :class {bluetooth-info == "" ? "disconnected" : "connected"}
+            :tooltip {bluetooth-info == "" ? "" : "bluetooth connected to ${bluetooth-info}"}
+      {bluetooth-info == "null" ? "" : bluetooth-info})))
 
 (defwidget wifi []
   (box :class "wifi"
-       :orientation "vertical"
     (button :class {wifi-connected == "up" ? "connected" : "disconnected"}
-            :tooltip {wifi-connected == "up" ? "connected to ${wifi-ssid}" : ""} "")))
+            :tooltip {wifi-connected == "up" ? "wifi connected to ${wifi-ssid}" : ""} wifi-ssid)))
 
 (defwidget battery []
   (box :class "battery"
-       :orientation "vertical"
     (button :class {power-status == "Charging" ? "charging" : ""}
             :tooltip "${power-status}" "${power-capacity}%")))
 
 (defwidget time []
   (box :class "time"
-       :valign "end"
-       :orientation "vertical"
     (button :class "hour" :tooltip "${time-hour}:${time-minute}:${time-second}" time-hour)
     (button :class "minute" :tooltip "${time-hour}:${time-minute}:${time-second}" time-minute)))
 
-(defpoll active-workspace :interval "500ms"
+(defpoll active-workspace :interval "200ms"
                           :initial "1"
   `hyprctl activewindow -j | jq .workspace.id`)
 
-(defpoll workspaces :interval "500ms"
+(defpoll workspaces :interval "200ms"
                     :initial "[1]"
   `hyprctl workspaces -j | jq '[.[] | .id] | sort'`)
+
+(defpoll active-window :interval "200ms"
+                          :initial ""
+  `hyprctl activewindow -j | jq .title`)
 
 (defpoll time-hour :interval "1s"
   `date '+%H'`)
@@ -76,6 +84,10 @@
 
 (defpoll time-second :interval "1s"
   `date '+%S'`)
+
+(defpoll bluetooth-info :interval "5s"
+                        :initial ""
+  `bluetoothctl info | grep Name | cut -d ' ' -f2-`)
 
 (defpoll wifi-connected :interval "5s"
                         :initial "down"
