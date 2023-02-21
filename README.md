@@ -2,21 +2,10 @@
     My dotfiles<br/><sup><sub>powered by  <a href="https://www.chezmoi.io/">chezmoi</a>
 </h1>
 
-## Installation (macOS)
+## Installation
 
 ```shell
 sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply dpjungmin
-```
-
-## Installation (NixOS)
-
-Install [home-manager] and run the following commands.
-
-```shell
-nix-env -iA nixos.chezmoi
-chezmoi init --apply dpjungmin
-cd ~/.config/nixpkgs
-./update.sh
 ```
 
 ## Pull the latest changes
