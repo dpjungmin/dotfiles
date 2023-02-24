@@ -46,8 +46,8 @@ switch (uname)
         set -x PATH $PATH /opt/homebrew/bin
         set -x PATH $PATH ~/opt/anaconda3/bin
         set -x PATH $PATH (brew --prefix)/opt/python/libexec/bin
-	set -x PATH $PATH /run/current-system/sw/bin
-	set -x PATH $PATH /etc/profiles/per-user/jungmin/bin
+    set -x PATH $PATH /run/current-system/sw/bin
+    set -x PATH $PATH /etc/profiles/per-user/jungmin/bin
     case '*'
 end
 
@@ -72,24 +72,15 @@ function mkcd -d "Create a directory and set CWD"
 end
 
 function fish_greeting
-    set os string join '.' (uname -s) (uname -m)
+    # set os string join '.' (uname -s) (uname -m)
 
-    echo
-    echo -e ($os | awk '{print " \\\\e[1mos: \\\\e[0;32m"$0"\\\\e[0m"}')
-    echo -e (uname -n | awk '{print " \\\\e[1mhostname: \\\\e[0;32m"$0"\\\\e[0m"}')
-    echo -e (uptime | sed 's/^up //' | awk '{print " \\\\e[1muptime: \\\\e[0;32m"$0"\\\\e[0m"}')
-    echo
+    # echo
+    # echo -e ($os | awk '{print " \\\\e[1mos: \\\\e[0;32m"$0"\\\\e[0m"}')
+    # echo -e (uname -n | awk '{print " \\\\e[1mhostname: \\\\e[0;32m"$0"\\\\e[0m"}')
+    # echo -e (uptime | sed 's/^up //' | awk '{print " \\\\e[1muptime: \\\\e[0;32m"$0"\\\\e[0m"}')
+    # echo
 
-    # Display TODOs if FILE exists
-    if test -e ~/todo
-        set_color red
-        echo -e " \e[1mTODOs\e[0;32m"
-        set_color yellow
-        cat ~/todo | sed 's/^/ /'
-        echo
-    end
-
-    set_color normal
+    # set_color normal
 end
 
 zoxide init fish | source
