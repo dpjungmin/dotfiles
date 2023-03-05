@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+
+cargo install erdtree
+
+{{ else if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+
+{{ end -}}
