@@ -26,6 +26,7 @@
   (box :class "right"
        :halign "end"
        :space-evenly false
+    (dropbox)
     (wifi)
     (bluetooth)
     (battery)
@@ -42,6 +43,13 @@
 (defwidget active-window []
   (box :class "active-window"
     (button :class "active-window" {active-window == "null" ? "" : active-window})))
+
+(defwidget dropbox []
+  (box :class "dropbox"
+    (button :class {dropbox-status == "Dropbox isn't running!" ? "off" : "on"}
+            :onclick {dropbox-status == "Dropbox isn't running!" ? "dropbox start" : ""}
+      {dropbox-status == "Dropbox isn't running!" ? "Start Dropbox" : dropbox-status == "Up to date"
+      ? "" : dropbox-status})))
 
 (defwidget bluetooth []
   (box :class "bluetooth"
@@ -103,3 +111,7 @@
 (defpoll power-status :interval "5s"
                       :initial ""
   `cat /sys/class/power_supply/BAT0/status`)
+
+(defpoll dropbox-status :interval "5s"
+                        :initial ""
+  `dropbox status 2> /dev/null`)

@@ -41,6 +41,27 @@
 }
 
 .right {
+  .dropbox {
+    font-family: monospace;
+    font-size: .75em;
+
+    .off {
+      color: #ffffff;
+      background-color: #b84d51;
+      border-radius: 4px;
+      margin: 8px 0;
+      padding: 0 15px;
+
+      &:hover {
+        background-color: #a84d51;
+      }
+    }
+
+    .on {
+      color: #7fbfb4;
+    }
+  }
+
   .bluetooth {
     font-family: monospace;
     font-size: .8em;
