@@ -41,7 +41,6 @@ set -Ux RUST_BACKTRACE 1
 # Set machine specific configurations
 switch (uname)
     case Linux
-        alias yank="xclip -selection clipboard"
         alias sound=alsamixer
     case Darwin
         set -x PATH $PATH /opt/homebrew/bin
