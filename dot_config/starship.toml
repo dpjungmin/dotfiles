@@ -4,6 +4,7 @@
 format = """
 $hostname[:](bright-white)$directory\
 $git_branch$git_commit$git_state$git_status\
+$rust\
 $sudo$character
 """
 
@@ -94,13 +95,13 @@ style = "bold yellow"
 disabled = false
 
 [rust]
-format = " [-](bright-white) [$symbol($version)]($style)"
-version_format = "v${raw}"
-symbol = "🦀 "
+format = "[:](bright-white)[$symbol\\($version\\)]($style)"
+version_format = "${raw}"
+symbol = "rust"
 detect_extensions = ["rs"]
 detect_files = ["Cargo.toml"]
 detect_folders = []
-style = "bright-white"
+style = "red"
 disabled = false
 
 [time]
