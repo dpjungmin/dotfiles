@@ -72,46 +72,20 @@
     (button :class "hour" :tooltip "${time-hour}:${time-minute}:${time-second}" time-hour)
     (button :class "minute" :tooltip "${time-hour}:${time-minute}:${time-second}" time-minute)))
 
-(defpoll active-workspace :interval "200ms"
-                          :initial "1"
-  `hyprctl activewindow -j | jq .workspace.id`)
+(defpoll active-workspace :interval "200ms" :initial "1" `./scripts/active-workspace.sh`)
+(defpoll workspaces :interval "200ms" :initial "[1]" `./scripts/workspaces.sh`)
+(defpoll active-window :interval "200ms" :initial "" `./scripts/active-window.sh`)
 
-(defpoll workspaces :interval "200ms"
-                    :initial "[1]"
-  `hyprctl workspaces -j | jq '[.[] | .id] | sort'`)
+(defpoll bluetooth-info :interval "5s" :initial "" `./scripts/bluetooth-info.sh`)
 
-(defpoll active-window :interval "200ms"
-                          :initial ""
-  `hyprctl activewindow -j | jq .title`)
+(defpoll wifi-connected :interval "5s" :initial "down" `./scripts/wifi-connected.sh`)
+(defpoll wifi-ssid :interval "5s" `./scripts/wifi-ssid.sh`)
 
-(defpoll time-hour :interval "1s"
-  `date '+%H'`)
+(defpoll power-capacity :interval "5s" :initial "0" `./scripts/power-capacity.sh`)
+(defpoll power-status :interval "5s" :initial "" `./scripts/power-status.sh`)
 
-(defpoll time-minute :interval "1s"
-  `date '+%M'`)
+(defpoll dropbox-status :interval "5s" :initial "" `./scripts/dropbox-status.sh`)
 
-(defpoll time-second :interval "1s"
-  `date '+%S'`)
-
-(defpoll bluetooth-info :interval "5s"
-                        :initial ""
-  `bluetoothctl info | grep Name | cut -d ' ' -f2-`)
-
-(defpoll wifi-connected :interval "5s"
-                        :initial "down"
-  `cat /sys/class/net/w*/operstate`)
-
-(defpoll wifi-ssid :interval "5s"
-  `nmcli | grep "connected to" | cut -d ' ' -f4`)
-
-(defpoll power-capacity :interval "5s"
-                        :initial "0"
-  `cat /sys/class/power_supply/BAT0/capacity`)
-
-(defpoll power-status :interval "5s"
-                      :initial ""
-  `cat /sys/class/power_supply/BAT0/status`)
-
-(defpoll dropbox-status :interval "5s"
-                        :initial ""
-  `dropbox status 2> /dev/null`)
+(defpoll time-hour :interval "1s" `date '+%H'`)
+(defpoll time-minute :interval "1s" `date '+%M'`)
+(defpoll time-second :interval "1s" `date '+%S'`)
